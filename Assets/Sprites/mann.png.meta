@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 2f53974003a6e8145b69563a01efe9d2
+timeCreated: 1481406736
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: mann_0
+    21300002: mann_1
+    21300004: mann_2
+    21300006: mann_3
+    21300008: mann_4
+    21300010: mann_5
+    21300012: mann_6
+    21300014: mann_7
+    21300016: mann_8
+    21300018: mann_9
+    21300020: mann_10
+    21300022: mann_11
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mann_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 117
+        width: 41
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 177
+        width: 13
+        height: 42
+      alignment: 9
+      pivot: {x: 0.6223931, y: 0.8693626}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 179
+        width: 13
+        height: 42
+      alignment: 9
+      pivot: {x: 0.59179336, y: 0.88830423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_3
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 99
+        width: 32
+        height: 13
+      alignment: 9
+      pivot: {x: 0.18923813, y: 0.62239194}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_4
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 109
+        width: 16
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5497217, y: 0.91001445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 111
+        width: 16
+        height: 65
+      alignment: 9
+      pivot: {x: 0.6243038, y: 0.94673204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_6
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 82
+        width: 31
+        height: 13
+      alignment: 9
+      pivot: {x: 0.16638204, y: 0.530598}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_7
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 68
+        width: 30
+        height: 38
+      alignment: 9
+      pivot: {x: 0.15526174, y: 0.2906446}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 22
+        height: 58
+      alignment: 9
+      pivot: {x: 0.789291, y: 0.9320661}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_9
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 17
+        height: 71
+      alignment: 9
+      pivot: {x: 0.6169925, y: 0.94819725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_10
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 22
+        height: 58
+      alignment: 9
+      pivot: {x: 0.71696854, y: 0.9114915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mann_11
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 0
+        width: 16
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5745826, y: 0.95379984}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
