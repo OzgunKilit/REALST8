@@ -8,14 +8,14 @@ public class Movement : MonoBehaviour {
 	public float speed; 
 	// Use this for initialization
 	void Start () {
-		leftFoot = GameObject.Find ("LeftFoot");
-		rightFoot =  GameObject.Find ("RightFoot");
+		leftFoot = GameObject.Find ("LeftAnkle");
+		rightFoot =  GameObject.Find ("RightAnkle");
 		leftJoint = GameObject.Find("LeftHip").GetComponent<RelativeJoint2D>();
 		rightJoint =  GameObject.Find("RightHip").GetComponent<RelativeJoint2D>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			//rightFoot.transform.position = (Vector2)rightFoot.transform.position + new Vector2(0.5f, 0 ) * Time.deltaTime;
 			rightJoint.linearOffset += new Vector2(speed, 0 ) * Time.deltaTime;
