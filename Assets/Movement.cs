@@ -17,24 +17,27 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		//JointMotor2D jointMotorLeft = leftWheelJoint.motor;
+		jointMotor.motorSpeed = 0;
+		leftWheelJoint.motor = jointMotor;
+		jointMotor.motorSpeed = 0;
+		rightWheelJoint.motor = jointMotor;
+
+
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			jointMotor.motorSpeed = motorSpeed;
-			leftWheelJoint.motor = jointMotor;
-
-			//JointMotor2D jointMotorRight = rightWheelJoint.motor;
-
 			jointMotor.motorSpeed = motorSpeed;
 			rightWheelJoint.motor = jointMotor;
 		}
 		if (Input.GetKey (KeyCode.LeftArrow)) {
 			jointMotor.motorSpeed = -motorSpeed;
-			leftWheelJoint.motor = jointMotor;
-
-			//JointMotor2D jointMotorRight = rightWheelJoint.motor;
-
-			jointMotor.motorSpeed = -motorSpeed;
 			rightWheelJoint.motor = jointMotor;
+		}
+		if (Input.GetKey (KeyCode.D)) {
+			jointMotor.motorSpeed = motorSpeed;
+			leftWheelJoint.motor = jointMotor;
+		}
+		if (Input.GetKey (KeyCode.A)) {
+			jointMotor.motorSpeed = -motorSpeed;
+			leftWheelJoint.motor = jointMotor;
 		}
 
 
