@@ -22,10 +22,10 @@ public class PlayerInput : MonoBehaviour {
 			right.targetDistance += 0.1f;
 		}
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			right.targetAngle -= 1f;
+			right.targetAngle += 3f;
 		}
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			right.targetAngle += 1f;
+			right.targetAngle -= 3f;
 		}
 		if (Input.GetKey (KeyCode.W)) {
 			left.targetDistance -= 0.1f;
@@ -34,10 +34,10 @@ public class PlayerInput : MonoBehaviour {
 			left.targetDistance += 0.1f;
 		}
 		if (Input.GetKey (KeyCode.A)) {
-			left.targetAngle -= 1f;
+			left.targetAngle += 3f;
 		}
 		if (Input.GetKey (KeyCode.D)) {
-			left.targetAngle += 1f;
+			left.targetAngle -= 3f;
 		}
 	}
 }

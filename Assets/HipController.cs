@@ -24,7 +24,7 @@ public class HipController : MonoBehaviour {
 		targetAngle = Mathf.Clamp (targetAngle, hinge.limits.min, hinge.limits.max);
 
 		JointMotor2D hingeMotor = hinge.motor;
-		hingeMotor.motorSpeed = (targetAngle - hinge.jointAngle) * 40 * Time.deltaTime;
+		hingeMotor.motorSpeed = (targetAngle - hinge.jointAngle) * 100 * Time.deltaTime;
 		hinge.motor = hingeMotor;
 
 		JointMotor2D sliderMotor = slider.motor;
