@@ -13,8 +13,8 @@ public class Movement : MonoBehaviour {
 	public float maxSpeed = 500;
 	public float jumpSpeed = 20000;
 
-	public bool isGrounded = true;
-	public Transform groundCheck;
+	public bool isLeftLegGrounded, isRightLegGrounded;
+	public Transform leftLegGroundCheck, rightLegGroundCheck;
 
 	void Start () {
 		jointMotor = leftWheelJoint.motor;
@@ -26,17 +26,22 @@ public class Movement : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		isLeftLegGrounded = Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		isRightLegGrounded = Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+
 
 		float rightCtrl = 0;
 		if (Input.GetKey (KeyCode.LeftArrow))
 			rightCtrl -= 1;
 		if (Input.GetKey (KeyCode.RightArrow))
 			rightCtrl += 1;
-		if (Input.GetKeyDown (KeyCode.Space) && isGrounded) {
-			isGrounded = false;
+		if (Input.GetKeyDown (KeyCode.Space) && isLeftLegGrounded || Input.GetKeyDown (KeyCode.Space) && isRightLegGrounded) {
+			isLeftLegGrounded = false;
+			isRightLegGrounded = false;
 			roomRigidbody.AddForce (new Vector2(0,jumpSpeed), ForceMode2D.Force);
 		}
+
 
 		rightJointMotor.motorSpeed = Mathf.Clamp (rightJointMotor.motorSpeed + rightCtrl  * maxSpeed * Time.fixedDeltaTime, -maxSpeed, maxSpeed);
 
