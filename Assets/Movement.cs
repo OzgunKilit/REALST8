@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space) && isLeftLegGrounded || Input.GetKeyDown (KeyCode.Space) && isRightLegGrounded) {
 			isLeftLegGrounded = false;
 			isRightLegGrounded = false;
-			roomRigidbody.AddForce (new Vector2(0,jumpSpeed), ForceMode2D.Force);
+			roomRigidbody.AddForce ((Vector2)transform.up*jumpSpeed, ForceMode2D.Force);
 		}
 
 
