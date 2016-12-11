@@ -11,6 +11,10 @@ public class Movement : MonoBehaviour {
 
 	public float motorSpeed = 300;
 	public float maxSpeed = 500;
+	public float jumpSpeed = 20000;
+
+	public bool isGrounded = true;
+	public Transform groundCheck;
 
 	void Start () {
 		jointMotor = leftWheelJoint.motor;
@@ -21,13 +25,17 @@ public class Movement : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
+		isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
 		float rightCtrl = 0;
 		if (Input.GetKey (KeyCode.LeftArrow))
 			rightCtrl -= 1;
 		if (Input.GetKey (KeyCode.RightArrow))
 			rightCtrl += 1;
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			roomRigidbody.AddForce (new Vector2(0,20000), ForceMode2D.Force);
+		if (Input.GetKeyDown (KeyCode.Space) && isGrounded) {
+			isGrounded = false;
+			roomRigidbody.AddForce (new Vector2(0,jumpSpeed), ForceMode2D.Force);
 		}
 
 		rightJointMotor.motorSpeed = Mathf.Clamp (rightJointMotor.motorSpeed + rightCtrl  * maxSpeed * Time.fixedDeltaTime, -maxSpeed, maxSpeed);
