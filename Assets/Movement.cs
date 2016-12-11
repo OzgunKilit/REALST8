@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour {
 
 	public float motorSpeed = 300;
 	public float maxSpeed = 500;
-	public float jumpSpeed = 20000;
+	public float jumpSpeed = 10000;
 
 	public bool isLeftLegGrounded, isRightLegGrounded;
 	public Transform leftLegGroundCheck, rightLegGroundCheck;
@@ -36,10 +36,9 @@ public class Movement : MonoBehaviour {
 			rightCtrl -= 1;
 		if (Input.GetKey (KeyCode.RightArrow))
 			rightCtrl += 1;
-		if (Input.GetKeyDown (KeyCode.Space) && isLeftLegGrounded || Input.GetKeyDown (KeyCode.Space) && isRightLegGrounded) {
-			isLeftLegGrounded = false;
+		if (Input.GetKeyDown (KeyCode.UpArrow) && isRightLegGrounded) {
 			isRightLegGrounded = false;
-			roomRigidbody.AddForce ((Vector2)transform.up*jumpSpeed, ForceMode2D.Force);
+			roomRigidbody.AddForceAtPosition ((Vector2)transform.up*jumpSpeed,rightLegGroundCheck.transform.position, ForceMode2D.Force);
 		}
 
 
@@ -56,6 +55,11 @@ public class Movement : MonoBehaviour {
 			leftCtrl -= 1;
 		if (Input.GetKey (KeyCode.D))
 			leftCtrl += 1;
+		if (Input.GetKeyDown (KeyCode.W) && isLeftLegGrounded) {
+			isLeftLegGrounded = false;
+			roomRigidbody.AddForceAtPosition ((Vector2)transform.up*jumpSpeed,leftLegGroundCheck.transform.position, ForceMode2D.Force);
+		}
+
 		leftJointMotor.motorSpeed = Mathf.Clamp (leftJointMotor.motorSpeed + leftCtrl * maxSpeed * Time.fixedDeltaTime, -maxSpeed, maxSpeed);
 
 		if (leftCtrl == 0)
