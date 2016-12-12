@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
 	public WheelJoint2D leftWheelJoint, rightWheelJoint;
@@ -29,7 +30,9 @@ public class Movement : MonoBehaviour {
 		isLeftLegGrounded = Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		isRightLegGrounded = Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-
+		if (Input.GetKeyDown (KeyCode.R)) {
+			SceneManager.LoadScene (0);
+		}
 
 		float rightCtrl = 0;
 		if (Input.GetKey (KeyCode.LeftArrow))
