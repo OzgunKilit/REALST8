@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
 	public WheelJoint2D leftWheelJoint, rightWheelJoint;
-	private JointMotor2D jointMotor;
 	private JointMotor2D leftJointMotor, rightJointMotor;
+	private Vector2 leftAnchor, rightAnchor;
 
 	private Rigidbody2D roomRigidbody;
 
@@ -14,18 +14,44 @@ public class Movement : MonoBehaviour {
 	public float maxSpeed = 500;
 	public float jumpSpeed = 10000;
 
+	public bool extended = false;
+
 	public bool isLeftLegGrounded, isRightLegGrounded;
 	public Transform leftLegGroundCheck, rightLegGroundCheck;
 
 	void Start () {
-		jointMotor = leftWheelJoint.motor;
 		leftJointMotor = leftWheelJoint.motor;
 		rightJointMotor = rightWheelJoint.motor;
 
 		roomRigidbody = GameObject.Find ("oneroom").GetComponent<Rigidbody2D>();
+
+		leftAnchor = leftWheelJoint.connectedAnchor;
+		rightAnchor = rightWheelJoint.connectedAnchor;
+		if (!extended) {
+			leftWheelJoint.connectedAnchor = GameObject.Find ("LeftHip").transform.localPosition;
+			rightWheelJoint.connectedAnchor = GameObject.Find ("RightHip").transform.localPosition;
+			leftWheelJoint.GetComponent<LineRenderer>().enabled = false;
+			rightWheelJoint.GetComponent<LineRenderer>().enabled = false;
+		}
 	}
 
 	void FixedUpdate () {
+		if (!extended) {
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				extended = true;
+
+				leftWheelJoint.GetComponent<LineRenderer>().enabled = true;
+				rightWheelJoint.GetComponent<LineRenderer>().enabled = true;
+			}
+
+			return;
+		}
+
+		// extend legs if not extended
+		if (leftWheelJoint.connectedAnchor != leftAnchor)
+			leftWheelJoint.connectedAnchor += (leftAnchor - leftWheelJoint.connectedAnchor) / 2;
+		if (rightWheelJoint.connectedAnchor != rightAnchor)
+			rightWheelJoint.connectedAnchor += (rightAnchor - rightWheelJoint.connectedAnchor) / 2;
 
 		isLeftLegGrounded = Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		isRightLegGrounded = Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
