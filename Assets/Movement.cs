@@ -25,11 +25,12 @@ public class Movement : MonoBehaviour {
 
 		roomRigidbody = GameObject.Find ("oneroom").GetComponent<Rigidbody2D>();
 
-		leftAnchor = leftWheelJoint.connectedAnchor;
-		rightAnchor = rightWheelJoint.connectedAnchor;
-		if (!extended) {
-			leftWheelJoint.connectedAnchor = GameObject.Find ("LeftHip").transform.localPosition;
-			rightWheelJoint.connectedAnchor = GameObject.Find ("RightHip").transform.localPosition;
+		leftAnchor = GameObject.Find ("LeftWheelPos").transform.localPosition;
+		rightAnchor = GameObject.Find ("RightWheelPos").transform.localPosition;
+		if (extended) {
+			leftWheelJoint.connectedAnchor = leftAnchor; // GameObject.Find ("LeftHip").transform.localPosition;
+			rightWheelJoint.connectedAnchor = rightAnchor; // GameObject.Find ("RightHip").transform.localPosition;
+		} else {
 			leftWheelJoint.GetComponent<LineRenderer>().enabled = false;
 			rightWheelJoint.GetComponent<LineRenderer>().enabled = false;
 		}
@@ -49,9 +50,9 @@ public class Movement : MonoBehaviour {
 
 		// extend legs if not extended
 		if (leftWheelJoint.connectedAnchor != leftAnchor)
-			leftWheelJoint.connectedAnchor += (leftAnchor - leftWheelJoint.connectedAnchor) / 2;
+			leftWheelJoint.connectedAnchor += (leftAnchor - leftWheelJoint.connectedAnchor) / 10;
 		if (rightWheelJoint.connectedAnchor != rightAnchor)
-			rightWheelJoint.connectedAnchor += (rightAnchor - rightWheelJoint.connectedAnchor) / 2;
+			rightWheelJoint.connectedAnchor += (rightAnchor - rightWheelJoint.connectedAnchor) / 10;
 
 		isLeftLegGrounded = Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		isRightLegGrounded = Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -69,8 +70,6 @@ public class Movement : MonoBehaviour {
 			isRightLegGrounded = false;
 			roomRigidbody.AddForceAtPosition ((Vector2)transform.up*jumpSpeed,rightLegGroundCheck.transform.position, ForceMode2D.Force);
 		}
-
-
 		rightJointMotor.motorSpeed = Mathf.Clamp (rightJointMotor.motorSpeed + rightCtrl  * maxSpeed * Time.fixedDeltaTime, -maxSpeed, maxSpeed);
 
 		if (rightCtrl == 0)
@@ -88,7 +87,6 @@ public class Movement : MonoBehaviour {
 			isLeftLegGrounded = false;
 			roomRigidbody.AddForceAtPosition ((Vector2)transform.up*jumpSpeed,leftLegGroundCheck.transform.position, ForceMode2D.Force);
 		}
-
 		leftJointMotor.motorSpeed = Mathf.Clamp (leftJointMotor.motorSpeed + leftCtrl * maxSpeed * Time.fixedDeltaTime, -maxSpeed, maxSpeed);
 
 		if (leftCtrl == 0)
