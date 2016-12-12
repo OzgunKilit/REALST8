@@ -58,6 +58,9 @@ public class Collision : MonoBehaviour {
 				break;
 			}
 
+			if (levelManager.health < 0) {
+				levelManager.health = 0;
+			}
 		}
 	}
 }
