@@ -17,8 +17,10 @@ public class TextManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (movementScript.didFallOver) {
-			textMesh.text = "PRESS R TO RESET!";
+		if (movementScript.didWin) {
+			textMesh.text = "YOU ARRIVED AT YOUR NEW HOME!";
+		} else if (movementScript.didFallOver) {
+			textMesh.text = "YOU FELL OVER! PRESS R TO RESET!";
 		} else if (!movementScript.extended) {
 			textMesh.text = "PRESS SPACE TO START!";
 		} else if (levelManager.health == 0) {

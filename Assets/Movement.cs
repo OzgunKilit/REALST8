@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour {
 	public float jumpSpeed = 10000;
 
 	public bool didFallOver = false;
+	public bool didWin = false;
 	public Transform leftWallGroundCheck, rightWallGroundCheck, topWallGroundCheck;
 
 	public bool extended = false;
@@ -48,6 +49,14 @@ public class Movement : MonoBehaviour {
 				rightWheelJoint.GetComponent<LineRenderer>().enabled = true;
 			}
 
+			return;
+		}
+
+		if (Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Target"))
+			&& Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Target"))) {
+			leftAnchor = GameObject.Find ("LeftHip").transform.localPosition;
+			rightAnchor = GameObject.Find ("RightHip").transform.localPosition;
+			didWin = true;
 			return;
 		}
 
