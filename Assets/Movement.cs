@@ -14,6 +14,9 @@ public class Movement : MonoBehaviour {
 	public float maxSpeed = 500;
 	public float jumpSpeed = 10000;
 
+	public bool didFallOver = false;
+	public Transform leftWallGroundCheck, rightWallGroundCheck, topWallGroundCheck;
+
 	public bool extended = false;
 
 	public bool isLeftLegGrounded, isRightLegGrounded;
@@ -57,6 +60,18 @@ public class Movement : MonoBehaviour {
 		isLeftLegGrounded = Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		isRightLegGrounded = Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
+		// check if house fell over
+		if (Physics2D.Linecast (transform.position, leftWallGroundCheck.position, 1 << LayerMask.NameToLayer ("Ground"))
+		    || Physics2D.Linecast (transform.position, rightWallGroundCheck.position, 1 << LayerMask.NameToLayer ("Ground"))
+		    || Physics2D.Linecast (transform.position, topWallGroundCheck.position, 1 << LayerMask.NameToLayer ("Ground"))) {
+			didFallOver = true;
+		} 
+		else {
+			didFallOver = false;
+		}
+
+
+		// reset scene on R
 		if (Input.GetKeyDown (KeyCode.R)) {
 			SceneManager.LoadScene (0);
 		}
