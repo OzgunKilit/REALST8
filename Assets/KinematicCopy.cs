@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KinematicCopy : MonoBehaviour {
+	public Vector2 adjustment;
 	public Rigidbody2D originalBody;
 	private Rigidbody2D ownBody;
 
@@ -11,7 +12,7 @@ public class KinematicCopy : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		ownBody.MovePosition (originalBody.transform.position);
+		ownBody.MovePosition ((Vector2)originalBody.transform.position + adjustment);
 		ownBody.MoveRotation (originalBody.transform.rotation.eulerAngles.z);
 	}
 }
