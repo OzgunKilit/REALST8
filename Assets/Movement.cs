@@ -52,19 +52,26 @@ public class Movement : MonoBehaviour {
 			return;
 		}
 
-		if (Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Target"))
-			&& Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Target"))) {
-			leftAnchor = GameObject.Find ("LeftHip").transform.localPosition;
-			rightAnchor = GameObject.Find ("RightHip").transform.localPosition;
-			didWin = true;
-			return;
-		}
-
 		// extend legs if not extended
 		if (leftWheelJoint.connectedAnchor != leftAnchor)
 			leftWheelJoint.connectedAnchor += (leftAnchor - leftWheelJoint.connectedAnchor) / 10;
 		if (rightWheelJoint.connectedAnchor != rightAnchor)
 			rightWheelJoint.connectedAnchor += (rightAnchor - rightWheelJoint.connectedAnchor) / 10;
+		else if (didWin) {
+			leftWheelJoint.GetComponent<LineRenderer>().enabled = false;
+			rightWheelJoint.GetComponent<LineRenderer>().enabled = false;
+		}
+		
+		if ( (Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Target"))
+			&& Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Target")))
+			|| Physics2D.Linecast (transform.position, topWallGroundCheck.position, 1 << LayerMask.NameToLayer ("Target"))) {
+			leftAnchor = GameObject.Find ("LeftHip").transform.localPosition;
+			rightAnchor = GameObject.Find ("RightHip").transform.localPosition;
+			leftWheelJoint.GetComponent<CircleCollider2D>().enabled = false;
+			rightWheelJoint.GetComponent<CircleCollider2D>().enabled = false;
+			didWin = true;
+			return;
+		}
 
 		isLeftLegGrounded = Physics2D.Linecast(transform.position, leftLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		isRightLegGrounded = Physics2D.Linecast(transform.position, rightLegGroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
